@@ -1,0 +1,28 @@
+{{>Layouts/header}}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">name</th>
+        <th scope="col">major</th>
+        <th scope="col">mbti</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#member}}
+        <tr>
+            <th>{{id}}</th>
+            <td>{{name}}</td>
+            <td>{{major}}</td>
+            <td>{{mbti}}</td>
+        </tr>
+    {{/member}}
+    </tbody>
+</table>
+
+<a href="/friends/{{member.id}}/edit" class="btn btn-primary">Edit</a>
+<a href="/friends/{{member.id}}/delete" class="btn btn-danger">Delete</a>
+<a href="/friends">Go to Member List</a>
+
+{{>Layouts/footer}}

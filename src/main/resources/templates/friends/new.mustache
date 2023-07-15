@@ -1,0 +1,21 @@
+{{>layouts/header}}
+
+<form class="container" action="/friends/create" method="post">
+    <div class="mb-3">
+        <label class="form-label">name</label>
+        <input type="text" class="form-control" name="name">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">major</label>
+        <input type="text" class="form-control" name="major">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">mbti</label>
+        <input type="text" class="form-control" name="mbti">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="/articles">Back</a>
+</form>
+
+{{>layouts/footer}}

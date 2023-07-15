@@ -1,0 +1,25 @@
+{{>layouts/header}}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Major</th>
+        <th scope="col">Mbti</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#memberList}}
+        <tr>
+            <th>{{id}}</th>
+            <td><a href="/friends/{{id}}">{{name}}</a></td>
+            <td>{{major}}</td>
+            <td>{{mbti}}</td>
+        </tr>
+    {{/memberList}}
+    </tbody>
+</table>
+
+<a href="/friends/new">New Article</a>
+{{>layouts/footer}}
