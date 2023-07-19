@@ -2,6 +2,7 @@ package com.example.introducemyself.controller;
 
 import com.example.introducemyself.dto.MemberDto;
 import com.example.introducemyself.entity.Member;
+import com.example.introducemyself.repository.MemberRepository;
 import com.example.introducemyself.service.MemberService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,8 +19,18 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class MemberApiController {
+
     @Autowired
     private final MemberService memberService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @PostMapping("/join")
+    public String join(@RequestBody Member member) {
+        member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
+        member.setRoles("ROLE_USER");
+        memberService.save(member);
+        return "successful membership";
+    }
 
     @GetMapping("/api/friends/{id}")
     public Member show(@PathVariable Long id) {
