@@ -4,9 +4,9 @@ import com.example.introducemyself.entity.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Slf4j
@@ -24,18 +24,9 @@ public class MemberRepositoryImpl implements MemberRepository {
         }
     }
     @Override
-    public Member findById(Long userId) {
-        return em.find(Member.class, userId);
+    public Member findById(Long UserId) {
+        return em.find(Member.class, UserId);
     }
-
-    @Override
-    public Member findByUsername(String username) {
-        TypedQuery<Member> query = em.createQuery("SELECT m FROM Member m WHERE m.username = :username", Member.class)
-                .setParameter("username", username);
-        List<Member> results = query.getResultList();
-        return results.isEmpty()? null : results.get(0);
-    }
-
     @Override
     public List<Member> findAll() {
         return em.createQuery("select m from Member m", Member.class)

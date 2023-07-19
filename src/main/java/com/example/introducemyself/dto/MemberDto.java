@@ -9,13 +9,11 @@ import lombok.*;
 @ToString
 public class MemberDto {
     private Long id;
-    private String username;
-    private String password;
+    private String name;
     private String major;
     private String mbti;
-    private String roles;
 
     public Member toEntity() {
-        return new Member(id, username, password, major, mbti, password);
+        return new Member(id, name, major, mbti);
     }
 }
