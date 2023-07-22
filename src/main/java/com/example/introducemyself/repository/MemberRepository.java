@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface MemberRepository {
      void save(Member member);
-
     Member findById(Long userId);
 
     Member findByUsername(String username);

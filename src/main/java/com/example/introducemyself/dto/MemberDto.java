@@ -14,7 +14,6 @@ public class MemberDto {
     private String major;
     private String mbti;
     private String roles;
-
     public Member toEntity() {
         return new Member(id, username, password, major, mbti, password);
     }

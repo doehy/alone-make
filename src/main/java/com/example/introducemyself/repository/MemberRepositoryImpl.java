@@ -35,7 +35,6 @@ public class MemberRepositoryImpl implements MemberRepository {
         List<Member> results = query.getResultList();
         return results.isEmpty()? null : results.get(0);
     }
-
     @Override
     public List<Member> findAll() {
         return em.createQuery("select m from Member m", Member.class)
