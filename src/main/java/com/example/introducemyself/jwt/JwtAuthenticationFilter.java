@@ -33,7 +33,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         log.info("로그인 요청이 들어왔습니다.");
         try {
             ObjectMapper om = new ObjectMapper();
-            Member member = om.readValue(request.getInputStream(), Member.class);
+            MemberDto memberDto = om.readValue(request.getInputStream(), MemberDto.class);
+            Member member = memberDto.toEntity();
             log.info("로그인 시도를 한 member " + member);
 
             UsernamePasswordAuthenticationToken authenticationToken =
