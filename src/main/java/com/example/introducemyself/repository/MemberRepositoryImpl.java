@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@Slf4j
 @Repository
 @RequiredArgsConstructor
 public class MemberRepositoryImpl implements MemberRepository {
@@ -20,7 +19,6 @@ public class MemberRepositoryImpl implements MemberRepository {
             em.persist(member);
         } else {
             em.merge(member);
-            log.info("merge 되는거아니여?");
         }
     }
     @Override
@@ -35,11 +33,13 @@ public class MemberRepositoryImpl implements MemberRepository {
         List<Member> results = query.getResultList();
         return results.isEmpty()? null : results.get(0);
     }
+
     @Override
     public List<Member> findAll() {
         return em.createQuery("select m from Member m", Member.class)
                 .getResultList();
     }
+
     @Override
     public void delete(Member member) {
         em.createQuery("delete from Member m where m.id = :memberId")
