@@ -2,12 +2,10 @@ package com.example.introducemyself.controller;
 
 import com.example.introducemyself.dto.MemberDto;
 import com.example.introducemyself.entity.Member;
-import com.example.introducemyself.repository.MemberRepository;
 import com.example.introducemyself.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,8 +31,7 @@ public class MemberController {
     }
 
     /**
-     * 등록 후 friends/create로 post 방식으로 보내지고
-     * 여기서 PostMapping으로 받아서 다시 잘 저장됐는지 보기 위해 상세페이지로 이동시킨다.
+     * 데이터를 받고 확인 하기 위해 상세페이지로 리다이렉트
      */
     @PostMapping("/friends/create")
     public String saveFriends(MemberDto memberDto) {
@@ -43,9 +40,6 @@ public class MemberController {
         return "redirect:/friends/" + member.getId();
     }
 
-    /**
-     * return할 때 {id}를 붙일 필요가 없지 model에 user객체를 실으니까
-     */
     @GetMapping("/friends/{id}")
     public String show(@PathVariable Long id, Model model) {
         Member findMember = memberService.findById(id);
@@ -61,9 +55,6 @@ public class MemberController {
         return "/friends/index";
     }
 
-    /**
-     * return할 때 {id}를 붙일 필요가 없지 model에 user객체를 실으니까
-     */
     @GetMapping("/friends/{id}/edit")
     public String edit(@PathVariable Long id, Model model) {
         Member findMember = memberService.findById(id);

@@ -16,14 +16,15 @@ public class CommentApiController {
     @Autowired
     private final CommentService commentService;
 
-    @GetMapping("/api/friends/{memberId}/comments")
+    @GetMapping("/api/comments/{memberId}")
     public ResponseEntity<List<CommentDto>> comments(@PathVariable Long memberId) {
         List<CommentDto> commentDto = commentService.showComments(memberId);
         return ResponseEntity.status(HttpStatus.OK).body(commentDto);
     }
 
-    @PostMapping("/api/friends/{memberId}/comments")
+    @PostMapping("/api/comments/{memberId}")
     public ResponseEntity<CommentDto> create(@PathVariable Long memberId, @RequestBody CommentDto commentDto) {
+        System.out.println(commentDto);
         CommentDto CreatedCommentDto = commentService.create(memberId, commentDto);
         return ResponseEntity.status(HttpStatus.OK).body(CreatedCommentDto);
     }

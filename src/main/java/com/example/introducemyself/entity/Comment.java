@@ -26,8 +26,8 @@ public class Comment {
     private String content;
 
     public static Comment createComment(CommentDto commentDto, Member member) {
-        if (commentDto.getId() != member.getId()) {
-            throw new IllegalArgumentException("댓글 생성 실패! 게시글의 id가 잘못됐습니다.");
+        if (commentDto.getMemberId() != member.getId()) {
+            throw new IllegalArgumentException("댓글 생성 실패! 게시글의 id가 잘못됐습니다." + commentDto.getId() + member.getId());
         }
         return new Comment(
             commentDto.getId(),

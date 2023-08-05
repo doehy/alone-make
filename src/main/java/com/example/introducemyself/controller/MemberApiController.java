@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -19,7 +21,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class MemberApiController {
-
     @Autowired
     private final MemberService memberService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -29,7 +30,7 @@ public class MemberApiController {
         member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
         member.setRoles("ROLE_USER");
         memberService.save(member);
-        return "successful membership";
+        return "successfully membership";
     }
 
     @GetMapping("/api/friends/{id}")
@@ -56,7 +57,7 @@ public class MemberApiController {
         return memberService.save(updatedMember);
     }
 
-    @DeleteMapping("/api/friends{id}")
+    @DeleteMapping("/api/friends/{id}")
     public ResponseEntity<Member> delete(@PathVariable Long id) {
         Member deletedMember = memberService.findById(id);
         memberService.delete(deletedMember);

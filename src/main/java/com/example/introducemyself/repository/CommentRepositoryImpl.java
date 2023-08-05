@@ -30,7 +30,7 @@ public class CommentRepositoryImpl implements CommentRepository{
 
     @Override
     public List<Comment> findByMemberId(Long memberId) {
-        return em.createQuery("select c from Comment c Where c.member_Id = :memberId", Comment.class)
+        return em.createQuery("select c from Comment c Where c.member_id = :memberId", Comment.class)
                 .setParameter("memberId", memberId)
                 .getResultList();
     }

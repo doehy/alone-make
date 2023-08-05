@@ -15,12 +15,9 @@ import java.util.List;
 public class MemberService {
     @Autowired
     private final MemberRepository memberRepository;
-    /**
-     * 회원 등록
-     */
+
     @Transactional
     public Member save(Member member) {
-        // validateDuplicateMember(member); # 같은 이름에 대해서 중복 처리를 해주고 싶다.
         memberRepository.save(member);
         return member;
     }
